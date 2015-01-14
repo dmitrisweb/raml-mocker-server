@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "description": "A collection of objects",
+    "properties": {
+        "arrayOfObjects": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "identifier": {
+                        "type": "number",
+                        "format": "id"
+                    },
+                    "text": {
+                        "type": "String"
+                    },
+                    "date": {
+                        "type": "integer",
+                        "format": "timestamp"
+                    },
+                    "number": {
+                        "type": "number"
+                    },
+                    "isTrue": {
+                        "type": "boolean"
+                    },
+                    "test": {
+                        "format": "timestamp",
+                        "$ref": "#/definitions/other"
+                    },
+                    "anyOfTest": {
+                        "type": "string",
+                        "oneOf": [{
+                            "format": "ipv4"
+                        }, {
+                            "format": "uri"
+                        }]
+                    },
+                    "allOfTest": {
+                        "type": "object",
+                        "allOf": [{
+                            "properties": {
+                                "prop1": {
+                                    "type": "string"
+                                }
+                            }
+                        }, {
+                            "properties": {
+                                "prop2": {
+                                    "type": "integer"
+                                }
+                            }
+                        }]
+                    },
+                    "bar": {
+                        "type": "string",
+                        "format": "Bar"
+                    }
+                },
+                "required": ["identifier", "text", "date", "number", "bar"]
+            }
+        }
+    },
+    "required": ["arrayOfObjects"],
+    "definitions": {
+        "other": {
+            "type": "number"
+        }
+    }
+}

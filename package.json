@@ -1,0 +1,21 @@
+{
+  "name": "raml-mocker-server",
+  "version": "0.1.0",
+  "description": "Node module to run server mocking API described in RAML files",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/testApp.js"
+  },
+  "keywords": [
+    "proxy", "server", "RAML", "REST", "API"
+  ],
+  "author": "Dmitry Smirnov (dmitri.smirnov@gmail.com)",
+  "private": "true",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^0.12.5",
+    "express": "^4.10.6",
+    "lodash": "^2.4.1",
+    "raml-mocker": "git://github.com/dmitrisweb/raml-mocker.git#example"
+  }
+}
