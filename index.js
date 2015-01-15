@@ -130,7 +130,9 @@ function addRoute (reqToMock){
 	app[method](uri, function(req,res){
 		var mockObj = requestsMap[method + '!' + reqToMock.uri];
 		if(mockObj){
-			res.status(mockObj.defaultCode || 200).send(mockObj.mock());
+			res.status(mockObj.defaultCode || 200).send(mockObj.mock(function(reqDefinition, response){
+				return reqDefinition.example ? reqDefinition.example : response;
+			}));
 		} else {
 			res.status(404).send();
 		}
