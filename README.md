@@ -53,10 +53,7 @@ Options
 
 #### History Log
 
-##### 0.1.1
+##### 0.1.0
 - update dependencies
 - prefix could be an array
 - update tests
-
-##### 0.1.0
-- initial commit
