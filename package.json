@@ -6,16 +6,28 @@
   "scripts": {
     "test": "node test/testApp.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmitrisweb/raml-mocker-server.git"
+  },
   "keywords": [
-    "proxy", "server", "RAML", "REST", "API"
+    "mock",
+    "mocker",
+    "proxy",
+    "server",
+    "RAML",
+    "REST",
+    "API"
   ],
   "author": "Dmitry Smirnov (dmitri.smirnov@gmail.com)",
-  "private": "true",
   "license": "MIT",
   "dependencies": {
     "chokidar": "^0.12.5",
     "express": "^4.10.6",
     "lodash": "^2.4.1",
-    "raml-mocker": "git://github.com/dmitrisweb/raml-mocker.git#example"
+    "raml-mocker": "^0.1.11"
+  },
+  "devDependencies": {
+    "q": "^1.1.2"
   }
 }

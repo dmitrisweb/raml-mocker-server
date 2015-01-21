@@ -1,37 +1,57 @@
-/* globals require, __dirname */
+/* globals require, __dirname, console */
 'use strict';
 
 
 var api = require('..');
 var http = require('http');
+var Q = require('Q');
 
 var port = '5050';
 
-var cb = function(){
-	console.log('APIs are ready to use');
-	var req = http.get('http://localhost:' + port + '/test/12345/example.json', function(res) {
+
+function get (path){
+	var dfd =  Q.defer();
+
+	var req = http.get('http://localhost:' + port + path, function(res) {
 		res.setEncoding('utf8');
 		res.on('data', function (body) {
 			console.log('Got response: ' + res.statusCode);
 			console.log(body);
-			server.close();
+			dfd.resolve();
 		});
-	}).on('error', function(e) {
-		console.log('Got error: ' + e.message);
-		server.close();
+	}).on('error', function(e){
+		dfd.reject(new Error(e.message));
 	});
 
 	req.end();
-};
+
+	return dfd.promise;
+}
+
+
+function cb (){
+
+	console.log('APIs are ready to use');
+
+	Q.all([
+		get('/test/12345/example.json'),
+		get('/api/test/12345/objectDef')
+	]).then(function(){
+		console.log('DONE');
+		server.close();
+	});
+}
+
 
 var options = {
 	path: 'test/raml',
 	debug: true,
 	watch: true,
 	port: port,
+	prefix: ['', '/api'],
 	staticPath: __dirname
 };
 
-var server = api(options, cb);
 
+var server = api(options, cb);
 

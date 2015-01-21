@@ -38,23 +38,25 @@ Add API to existing web server:
 Options
 ---
 
-**Defaults**
+| Name        | Type          | Default value | Description                                                  |
+| ----------- | ------------- | ------------- | -------------------------------------------------------------|
+| port        | number        | 3030          | defines server port                                          |
+| path        | string        | 'raml'        | path to raml folder, relative to the execution context       |
+| prefix      | string, array | ''            | prefixing all API endpoints described in RAML                |
+| debug       | boolean       |               | enable logging debug info to the console                     |
+| watch       | boolean       |               | enable watching on RAML files                                |
+| staticPath  | string        |               | defines path to the static folder                            |
+| app         | object        |               | if server already exists you can pass express app,           |
+|             |               |               | no need to specify *port* and *staticPath*                   |
 
- * port: 3030,
- * path: 'raml',
- * prefix: ''
-
-**Options**
-
- * **port**: 7777            // defines server port
- * **path**: "path/to/raml"  // path is relative to execution context
- * **prefix**: "/api/v1"     // prefixing all API endpoints described in RAML
- * **debug**: true           // enable logging debug info to console
- * **watch**: true           // enable watching on RAML files
- * **staticPath**: __dirname // defines path to static
- * **app**: express()        // if server already exists you can pass it, no need to specify *port* and *staticPath*
 
 
 #### History Log
+
+##### 0.1.1
+- update dependencies
+- prefix could be an array
+- update tests
+
 ##### 0.1.0
 - initial commit

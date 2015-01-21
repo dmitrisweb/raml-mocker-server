@@ -121,22 +121,25 @@ function watch (){
 }
 
 function addRoute (reqToMock){
-	var uri = options.prefix + reqToMock.uri;
+
+	var prefixes = _.isArray(options.prefix) ? options.prefix : [options.prefix];
 	var method = reqToMock.method;
 
-	// console.log('%ssometext', colors.qyan);
+	log(colors.qyan + method + colors.default, '\t', reqToMock.uri);
 
-	log(colors.qyan + method + colors.default, '\t', uri);
-	app[method](uri, function(req,res){
-		var mockObj = requestsMap[method + '!' + reqToMock.uri];
-		if(mockObj){
-			res.status(mockObj.defaultCode || 200).send(mockObj.mock(function(reqDefinition, response){
-				return reqDefinition.example ? reqDefinition.example : response;
-			}));
-		} else {
-			res.status(404).send();
-		}
-		log(colors.green + method + colors.default, '\t', uri);
+	prefixes.forEach(function(prefix){
+		var uri = prefix + reqToMock.uri;
+
+		app[method](uri, function(req,res){
+			var mockObj = requestsMap[method + '!' + reqToMock.uri];
+			if(mockObj){
+				var response = mockObj.mock() || mockObj.example();
+				res.status(mockObj.defaultCode || 200).send(response);
+			} else {
+				res.status(404).send();
+			}
+			log(colors.green + method + colors.default, '\t', uri);
+		});
 	});
 }
 
