@@ -29,11 +29,17 @@ function get (path){
 }
 
 
-function cb (){
+function cb (app){
 
 	console.log('APIs are ready to use');
 
+	// Add custome route
+	app.get('/custom', function(req,res){
+		res.status(200).send('custom url');
+	});
+
 	Q.all([
+		get('/custom'),
 		get('/test/12345/example.json'),
 		get('/api/test/12345/objectDef')
 	]).then(function(){

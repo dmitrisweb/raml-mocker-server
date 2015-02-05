@@ -29,6 +29,7 @@ var colors = {default: '\x1b[0m', green: '\x1b[32m', qyan: '\x1b[36m'};
  */
 function init (prefs, callback) {
 	options = _.extend(defaults, prefs);
+	app = options.app || express();
 
 	ramlMocker.generate(options, process(function(requestsToMock){
 		requestsToMock.forEach(function(reqToMock){
@@ -38,12 +39,12 @@ function init (prefs, callback) {
 		log('%s[%s]%s API routes generated', colors.qyan, requestsToMock.length, colors.default);
 
 		if(typeof callback === 'function'){
-			callback();
+			callback(app);
 		}
 	}));
 
 	var watcher = watch();
-	var server = launchServer(options.app);
+	var server = launchServer(app);
 
 	function close () {
 		if (watcher) { watcher.close(); }
@@ -77,16 +78,14 @@ function process (callback) {
 }
 
 
-function launchServer (extApp){
-
-	app = extApp || express();
+function launchServer (app){
 
 	// intercept OPTIONS method
 	app.options('*', function(req, res) {
 		res.status(200).send();
 	});
 
-	if (!extApp) {
+	if (!options.app) {
 
 		// set static location
 		if(options.staticPath){

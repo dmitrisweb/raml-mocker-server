@@ -19,7 +19,8 @@ var options = {
     path: 'test/raml' // path to folder with RAML files
 };
 
-var callback = function (){
+var callback = function (app){
+	// Express app could be used to configure more paths
     console.log('All RAML files parsed and API endpoints defined');
 };
 
@@ -47,13 +48,9 @@ Options
 | watch       | boolean       |               | enable watching on RAML files                                |
 | staticPath  | string        |               | defines path to the static folder                            |
 | app         | object        |               | if server already exists you can pass express app,           |
-|             |               |               | no need to specify *port* and *staticPath*                   |
+|             |               |               | Express app, no need to specify *port* and *staticPath*      |
 
 
 
-#### History Log
+#### [Changelog](CHANGELOG.md)
 
-##### 0.1.0
-- update dependencies
-- prefix could be an array
-- update tests

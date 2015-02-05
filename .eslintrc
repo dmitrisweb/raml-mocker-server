@@ -1,0 +1,31 @@
+{
+  "env": {
+		"browser": true,
+		"amd": true,
+		"node": true,
+		"jasmine": true
+	},
+	"globals": {
+
+	},
+	"rules": {
+		"valid-jsdoc": 0,
+		"no-debugger": 0,
+		"consistent-this": [0, "ctrl"],
+		"curly": [0, "multi"],
+		"brace-style": [0, "stroustrup"],
+		"no-constant-condition": 1,
+		"no-underscore-dangle": 0,
+		"no-use-before-define": 1,
+		"func-names": 0,
+		"func-style": [0, "declaration"],
+		"new-cap": 1,
+		"new-parens": 2,
+		"no-ternary": 0,
+		"no-unused-vars": [1, {"vars": "local", "args": "none"}],
+		"quotes": [2, "single"],
+		"one-var": 0,
+		"space-infix-ops": 0,
+		"strict": 0
+	}
+}
