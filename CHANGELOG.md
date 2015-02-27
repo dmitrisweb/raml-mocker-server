@@ -1,5 +1,8 @@
 ## Changelog
 
+### v 0.1.2 (2015-02-27)
+* fix / remove comments from the json response
+
 ### v 0.1.1 (2015-02-05)
 * return "app" in the callback
 

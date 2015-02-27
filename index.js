@@ -13,7 +13,11 @@ var app;
 var defaults = {
 	port: 3030,
 	path: 'raml',
-	prefix: ''
+	prefix: '',
+	onResponse: function(mockObj){
+		var response = mockObj.mock() || mockObj.example();
+		return removeComments(response);
+	}
 	// watch: true, // watching
 	// debug: true, // shows logs
 };
@@ -119,6 +123,32 @@ function watch (){
 	}
 }
 
+/**
+ * Remove RAML Comments (#...) from the response
+ * @param  {string} text input string
+ * @return {tring}       result string
+ */
+function removeComments (text){
+	text = text || '';
+
+	var result = text.split('\n').map(function(val){
+	    var k=0;
+	    var skip = false;
+
+	    return val.split('').reduce(function(a, b){
+	        if(b==='"') k++;
+
+	        // if outside quotes
+	        if(1-k%2){
+	            if(b==='#') skip = true;
+	        }
+	        return a+= skip ? '' : b;
+	    }, '');
+	});
+
+	return result.join('\n');
+}
+
 function addRoute (reqToMock){
 
 	var prefixes = _.isArray(options.prefix) ? options.prefix : [options.prefix];
@@ -132,7 +162,7 @@ function addRoute (reqToMock){
 		app[method](uri, function(req,res){
 			var mockObj = requestsMap[method + '!' + reqToMock.uri];
 			if(mockObj){
-				var response = mockObj.mock() || mockObj.example();
+				var response = options.onResponse(mockObj);
 				res.status(mockObj.defaultCode || 200).send(response);
 			} else {
 				res.status(404).send();
