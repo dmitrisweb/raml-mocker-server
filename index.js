@@ -3,6 +3,7 @@
 
 var _ = require('lodash');
 var express = require('express');
+var cors = require('cors');
 var chokidar = require('chokidar');
 var ramlMocker = require('raml-mocker');
 
@@ -30,6 +31,7 @@ var colors = {default: '\x1b[0m', green: '\x1b[32m', qyan: '\x1b[36m'};
 function init (prefs, callback) {
 	options = _.extend(defaults, prefs);
 	app = options.app || express();
+	app.use(cors());
 
 	ramlMocker.generate(options, process(function(requestsToMock){
 		requestsToMock.forEach(function(reqToMock){
