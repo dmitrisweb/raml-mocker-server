@@ -1,5 +1,8 @@
 ## Changelog
 
+### v 0.1.2 (2015-10-26)
+* Add CORS middleware
+
 ### v 0.1.1 (2015-02-05)
 * return "app" in the callback
 

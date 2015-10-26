@@ -1,6 +1,6 @@
 {
   "name": "raml-mocker-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node module to run server mocking API described in RAML files",
   "main": "index.js",
   "scripts": {
@@ -22,10 +22,11 @@
   "author": "Dmitry Smirnov (dmitri.smirnov@gmail.com)",
   "license": "MIT",
   "dependencies": {
-    "chokidar": "^0.12.5",
-    "express": "^4.10.6",
-    "lodash": "^2.4.1",
-    "raml-mocker": "^0.1.11"
+    "chokidar": "^0.12.6",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "lodash": "^2.4.2",
+    "raml-mocker": "^0.1.14"
   },
   "devDependencies": {
     "q": "^1.1.2"
