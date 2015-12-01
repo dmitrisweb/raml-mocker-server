@@ -41,7 +41,11 @@ function cb (app){
 	Q.all([
 		get('/custom'),
 		get('/test/12345/example.json'),
-		get('/api/test/12345/objectDef')
+		get('/api/test/12345/objectDef'),
+		get('/example'),
+		get('/faker'),
+		get('/schema-first'),
+		get('/example-first')
 	]).then(function(){
 		console.log('DONE');
 		server.close();
@@ -55,6 +59,7 @@ var options = {
 	watch: true,
 	port: port,
 	prefix: ['', '/api'],
+	prioritizeBy: 'example',
 	staticPath: __dirname
 };
 

@@ -39,16 +39,16 @@ Add API to existing web server:
 Options
 ---
 
-| Name        | Type          | Default value | Description                                                  |
-| ----------- | ------------- | ------------- | -------------------------------------------------------------|
-| port        | number        | 3030          | defines server port                                          |
-| path        | string        | 'raml'        | path to raml folder, relative to the execution context       |
-| prefix      | string, array | ''            | prefixing all API endpoints described in RAML                |
-| debug       | boolean       |               | enable logging debug info to the console                     |
-| watch       | boolean       |               | enable watching on RAML files                                |
-| staticPath  | string        |               | defines path to the static folder                            |
-| app         | object        |               | if server already exists you can pass express app,           |
-|             |               |               | Express app, no need to specify *port* and *staticPath*      |
+| Name         | Type          | Default value | Description                                                  |
+| ------------ | ------------- | ------------- | -------------------------------------------------------------|
+| port         | number        | 3030          | defines server port                                          |
+| path         | string        | 'raml'        | path to raml folder, relative to the execution context       |
+| prefix       | string, array | ''            | prefixing all API endpoints described in RAML                |
+| debug        | boolean       |               | enable logging debug info to the console                     |
+| watch        | boolean       |               | enable watching on RAML files                                |
+| staticPath   | string        |               | defines path to the static folder                            |
+| prioritizeBy | string        | 'schema'      | defines the priority of the endpoint response if both 'schema' and 'example' are defined |
+| app          | object        |               | if server already exists you can pass express app, Express app, no need to specify *port* and *staticPath* |
 
 
 

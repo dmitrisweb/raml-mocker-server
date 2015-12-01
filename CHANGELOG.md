@@ -1,5 +1,8 @@
 ## Changelog
 
+### v 0.1.4 (2015-12-01)
+* Add prioritizeBy option
+
 ### v 0.1.2 (2015-10-26)
 * Add CORS middleware
 

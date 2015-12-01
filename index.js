@@ -14,11 +14,11 @@ var app;
 var defaults = {
 	port: 3030,
 	path: 'raml',
-	prefix: ''
+	prefix: '',
+	prioritizeBy: 'schema', // example, todo:order
 	// watch: true, // watching
 	// debug: true, // shows logs
 };
-
 
 var colors = {default: '\x1b[0m', green: '\x1b[32m', qyan: '\x1b[36m'};
 
@@ -134,7 +134,12 @@ function addRoute (reqToMock){
 		app[method](uri, function(req,res){
 			var mockObj = requestsMap[method + '!' + reqToMock.uri];
 			if(mockObj){
-				var response = mockObj.mock() || mockObj.example();
+				var mock = mockObj.mock && mockObj.mock();
+				var example = mockObj.example && mockObj.example();
+				var response =  options.prioritizeBy === 'example' ?
+						example || mock :
+						mock || example || '';
+
 				res.status(mockObj.defaultCode || 200).send(response);
 			} else {
 				res.status(404).send();
