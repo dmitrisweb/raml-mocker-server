@@ -16,6 +16,7 @@ function get (path){
 		res.setEncoding('utf8');
 		res.on('data', function (body) {
 			console.log('Got response: ' + res.statusCode);
+			console.log(res.headers['content-type']);
 			console.log(body);
 			dfd.resolve();
 		});

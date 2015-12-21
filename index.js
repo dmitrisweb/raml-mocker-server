@@ -140,6 +140,7 @@ function addRoute (reqToMock){
 						example || mock :
 						mock || example || '';
 
+				res.setHeader('content-type', 'application/json');
 				res.status(mockObj.defaultCode || 200).send(response);
 			} else {
 				res.status(404).send();
