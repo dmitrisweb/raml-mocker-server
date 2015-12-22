@@ -1,5 +1,8 @@
 ## Changelog
 
+### v 0.1.5 (2015-12-21)
+* Add Content-Type: application/json header for response
+
 ### v 0.1.4 (2015-12-01)
 * Add prioritizeBy option
 
