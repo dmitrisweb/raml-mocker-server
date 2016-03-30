@@ -25,8 +25,8 @@
     "chokidar": "^0.12.6",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "lodash": "^2.4.2",
-    "raml-mocker": "^0.1.14"
+    "lodash": "^3.10.1",
+    "raml-mocker": "^0.2.0"
   },
   "devDependencies": {
     "q": "^1.1.2"
