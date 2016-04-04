@@ -1,6 +1,6 @@
 {
   "name": "raml-mocker-server",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Node module to run server mocking API described in RAML files",
   "main": "index.js",
   "scripts": {
